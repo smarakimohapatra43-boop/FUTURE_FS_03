@@ -14,9 +14,6 @@ body{
     overflow-x:hidden;
 }
 
-/* =========================
-SCROLL BAR
-========================= */
 
 .scroll{
     width:100%;
@@ -51,9 +48,7 @@ SCROLL BAR
 
 }
 
-/* =========================
-HEADER
-========================= */
+
 
 header{
     position:sticky;
@@ -176,9 +171,6 @@ header{
     transform:translateY(-5px);
 }
 
-/* =========================
-HERO SECTION
-========================= */
 
 .hero{
     position:relative;

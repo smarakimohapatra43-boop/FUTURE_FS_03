@@ -10,35 +10,21 @@ require("dotenv").config();
 
 const app = express();
 
-/* =========================
-MIDDLEWARE
-========================= */
-
 app.use(cors());
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-/* =========================
-STATIC FOLDER
-========================= */
 
 app.use(express.static(path.join(__dirname, "public")));
 
-/* =========================
-HOME ROUTE
-========================= */
 
 app.get("/", (req, res) => {
 
     res.sendFile(path.join(__dirname, "public", "index.html"));
 
 });
-
-/* =========================
-MONGODB CONNECTION
-========================= */
 
 mongoose.connect(process.env.MONGO_URI)
 
@@ -56,9 +42,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 });
 
-/* =========================
-SCHEMA
-========================= */
 
 const bookingSchema = new mongoose.Schema({
 
@@ -84,15 +67,11 @@ const bookingSchema = new mongoose.Schema({
 
 });
 
-/* =========================
-MODEL
-========================= */
+
 
 const Booking = mongoose.model("Booking", bookingSchema);
 
-/* =========================
-BOOKING ROUTE
-========================= */
+
 
 app.post("/api/book-now", async (req, res) => {
 
@@ -173,10 +152,6 @@ app.get("/api/bookings", async (req, res) => {
     }
 
 });
-
-/* =========================
-PORT
-========================= */
 
 const PORT = process.env.PORT || 5000;
 

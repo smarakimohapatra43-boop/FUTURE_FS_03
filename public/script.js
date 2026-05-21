@@ -29,8 +29,6 @@ prevBtn.addEventListener('click', () => {
 
 });
 
-/* AUTO SLIDE */
-
 setInterval(() => {
 
     showSlide(currentIndex + 1);
