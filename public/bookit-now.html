@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BOOK NOW</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <section class="booking-form">
+
+        <div class="enquiry">
+
+            <h1>BOOK IT NOW</h1>
+
+            <h2>BE A PART OF OUR FAMILY</h2>
+
+            <p>
+                Fill the enquiry form we will contact you soon ❤️
+            </p>
+
+        </div>
+
+        <div class="form-card">
+
+            <form action="/api/book-now" method="POST">
+
+                <label>Name:</label>
+                <br>
+
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="EX - JOHN"
+                    required>
+
+                <br><br>
+
+                <label>Email Id:</label>
+                <br>
+
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="xyz@gmail.com"
+                    required>
+
+                <br><br>
+
+                <label>Phone Number:</label>
+                <br>
+
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="1234567890"
+                    required>
+
+                <br><br>
+
+                <label>Date of Your Event:</label>
+                <br>
+
+                <input
+                    type="date"
+                    name="date"
+                    required>
+
+                <br><br>
+
+                <select name="event-type" required>
+
+                    <option value="">Select Event Type</option>
+
+                    <option>Wedding Ceremony</option>
+
+                    <option>Reception Party</option>
+
+                    <option>Birthday Celebration</option>
+
+                    <option>Ring Ceremony</option>
+
+                    <option>Thread Ceremony</option>
+
+                    <option>Corporate Event</option>
+
+                    <option>Anniversary Celebration</option>
+
+                    <option>Other Family Event</option>
+
+                </select>
+
+                <br><br>
+
+                <label>Number of Guests:</label>
+                <br>
+
+                <input
+                    type="number"
+                    name="no-of-guests"
+                    required>
+
+                <br><br>
+
+                <label>Address:</label>
+                <br>
+
+                <input
+                    type="text"
+                    name="address"
+                    placeholder="ENTER YOUR ADDRESS"
+                    required>
+
+                <br><br>
+
+                <select name="rooms" required>
+
+                    <option value="">Number of Rooms Needed</option>
+
+                    <option>1 ROOM</option>
+
+                    <option>2 ROOM</option>
+
+                    <option>3 ROOM</option>
+
+                    <option>4 ROOM</option>
+
+                    <option>5 ROOM</option>
+
+                </select>
+
+                <br><br>
+
+                <select name="roomType" required>
+
+                    <option value="">Room Type</option>
+
+                    <option>AC</option>
+
+                    <option>NON-AC</option>
+
+                </select>
+
+                <br><br>
+
+                <label>Other Requirement:</label>
+                <br>
+
+                <textarea
+                    name="more-info"
+                    placeholder="TELL US ANY OTHER FACILITIES THAT YOU REQUIRE">
+                </textarea>
+
+                <br>
+
+                <button type="submit">
+                    SUBMIT
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
