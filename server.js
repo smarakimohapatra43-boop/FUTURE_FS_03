@@ -10,21 +10,31 @@ require("dotenv").config();
 
 const app = express();
 
+
+
+// Middleware
+
 app.use(cors());
 
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
+app.use(express.static("public"));
 
-app.use(express.static(path.join(__dirname, "public")));
 
+
+// Home Route
 
 app.get("/", (req, res) => {
 
     res.sendFile(path.join(__dirname, "public", "index.html"));
 
 });
+
+
+
+// MongoDB Connection
 
 mongoose.connect(process.env.MONGO_URI)
 
@@ -42,6 +52,9 @@ mongoose.connect(process.env.MONGO_URI)
 
 });
 
+
+
+// Booking Schema
 
 const bookingSchema = new mongoose.Schema({
 
@@ -69,15 +82,19 @@ const bookingSchema = new mongoose.Schema({
 
 
 
+// Booking Model
+
 const Booking = mongoose.model("Booking", bookingSchema);
 
 
 
+// Booking Route
+
 app.post("/api/book-now", async (req, res) => {
 
-    console.log(req.body);
-
     try {
+
+        console.log(req.body);
 
         const booking = new Booking({
 
@@ -105,18 +122,46 @@ app.post("/api/book-now", async (req, res) => {
 
         await booking.save();
 
-        console.log("Booking Saved");
+        console.log("Booking Saved Successfully");
 
         res.send(`
 
-            <h1 style="
-                text-align:center;
-                margin-top:100px;
-                color:green;
+            <div style="
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                height:100vh;
                 font-family:sans-serif;
+                background:#f5f5f5;
             ">
-                Booking Submitted Successfully ❤️
-            </h1>
+
+                <div style="
+                    background:white;
+                    padding:40px;
+                    border-radius:15px;
+                    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+                    text-align:center;
+                ">
+
+                    <h1 style="color:green;">
+                        Booking Submitted Successfully ❤️
+                    </h1>
+
+                    <a href="/" style="
+                        display:inline-block;
+                        margin-top:20px;
+                        padding:12px 25px;
+                        background:#8b0000;
+                        color:white;
+                        text-decoration:none;
+                        border-radius:8px;
+                    ">
+                        Back To Home
+                    </a>
+
+                </div>
+
+            </div>
 
         `);
 
@@ -131,6 +176,11 @@ app.post("/api/book-now", async (req, res) => {
     }
 
 });
+
+
+
+// Fetch All Bookings
+
 app.get("/api/bookings", async (req, res) => {
 
     try {
@@ -143,6 +193,8 @@ app.get("/api/bookings", async (req, res) => {
 
     catch(error){
 
+        console.log(error);
+
         res.status(500).json({
 
             message: "Error Fetching Bookings"
@@ -153,15 +205,24 @@ app.get("/api/bookings", async (req, res) => {
 
 });
 
+
+
+// Test Route
+
+app.get("/test", (req, res) => {
+
+    res.send("SERVER IS WORKING");
+
+});
+
+
+
+// Server Start
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
 
     console.log(`Server Running on Port ${PORT}`);
-
-});
-app.get("/test", (req, res) => {
-
-    res.send("SERVER IS WORKING");
 
 });
