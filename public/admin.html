@@ -9,15 +9,29 @@
 
     <title>Admin Dashboard</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin.css">
 
 </head>
 
 <body>
 
-    <h1>All Bookings</h1>
+    <div id="login-box">
 
-    <div id="booking-container"></div>
+        <h2>Admin Login</h2>
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <button onclick="login()">Login</button>
+
+    </div>
+
+    <div id="dashboard">
+
+        <h1>All Bookings</h1>
+
+        <div id="booking-container"></div>
+
+    </div>
 
     <script src="admin.js"></script>
 

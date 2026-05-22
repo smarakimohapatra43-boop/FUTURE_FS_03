@@ -1,53 +1,76 @@
-fetch("/api/bookings")
+function login(){
 
-.then(res => res.json())
+    const password = document.getElementById("password").value;
 
-.then(data => {
+    if(password === "admin123"){
 
-    console.log(data);
+        document.getElementById("login-box").style.display = "none";
 
-    const container =
-    document.getElementById("booking-container");
+        document.getElementById("dashboard").style.display = "block";
 
-    data.forEach((booking) => {
+        loadBookings();
 
-        container.innerHTML += `
+    }
+    else{
 
-            <div style="
-                border:1px solid #ccc;
-                padding:20px;
-                margin:20px;
-                border-radius:10px;
-            ">
+        alert("Wrong Password");
 
-                <h3>${booking.name}</h3>
+    }
 
-                <p>Email: ${booking.email}</p>
+}
 
-                <p>Phone: ${booking.phone}</p>
+function loadBookings(){
 
-                <p>Event: ${booking.eventType}</p>
+    fetch("/api/bookings")
 
-                <p>Date: ${booking.eventDate}</p>
+    .then(res => res.json())
 
-                <p>Guests: ${booking.guests}</p>
+    .then(data => {
 
-                <p>Rooms: ${booking.rooms}</p>
+        const container = document.getElementById("booking-container");
 
-                <p>Room Type: ${booking.roomType}</p>
+        container.innerHTML = "";
 
-                <p>Requirements: ${booking.requirements}</p>
+        data.forEach(booking => {
 
-            </div>
+            container.innerHTML += `
 
-        `;
+                <div class="booking-card">
+
+                    <h2>${booking.name}</h2>
+
+                    <p><strong>Email:</strong> ${booking.email}</p>
+
+                    <p><strong>Phone:</strong> ${booking.phone}</p>
+
+                    <p><strong>Event Date:</strong> ${booking.eventDate}</p>
+
+                    <p><strong>Event Type:</strong> ${booking.eventType}</p>
+
+                    <p><strong>Guests:</strong> ${booking.guests}</p>
+
+                    <p><strong>Address:</strong> ${booking.address}</p>
+
+                    <p><strong>Rooms Needed:</strong> ${booking.rooms}</p>
+
+                    <p><strong>Room Type:</strong> ${booking.roomType}</p>
+
+                    <p><strong>Requirements:</strong> ${booking.requirements}</p>
+
+                </div>
+
+            `;
+
+        });
+
+    })
+
+    .catch(error => {
+
+        console.log(error);
+
+        alert("Failed to load bookings");
 
     });
 
-})
-
-.catch((error) => {
-
-    console.log(error);
-
-});
+}
