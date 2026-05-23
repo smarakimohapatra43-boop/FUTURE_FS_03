@@ -11,9 +11,6 @@ require("dotenv").config();
 const app = express();
 
 
-
-// Middleware
-
 app.use(cors());
 
 app.use(express.json());
@@ -23,18 +20,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 
-
-// Home Route
-
 app.get("/", (req, res) => {
 
     res.sendFile(path.join(__dirname, "public", "index.html"));
 
 });
-
-
-
-// MongoDB Connection
 
 mongoose.connect(process.env.MONGO_URI)
 
@@ -52,9 +42,6 @@ mongoose.connect(process.env.MONGO_URI)
 
 });
 
-
-
-// Booking Schema
 
 const bookingSchema = new mongoose.Schema({
 
@@ -81,14 +68,8 @@ const bookingSchema = new mongoose.Schema({
 });
 
 
-
-// Booking Model
-
 const Booking = mongoose.model("Booking", bookingSchema);
 
-
-
-// Booking Route
 
 app.post("/api/book-now", async (req, res) => {
 
@@ -178,9 +159,6 @@ app.post("/api/book-now", async (req, res) => {
 });
 
 
-
-// Fetch All Bookings
-
 app.get("/api/bookings", async (req, res) => {
 
     try {
@@ -206,18 +184,12 @@ app.get("/api/bookings", async (req, res) => {
 });
 
 
-
-// Test Route
-
 app.get("/test", (req, res) => {
 
     res.send("SERVER IS WORKING");
 
 });
 
-
-
-// Server Start
 
 const PORT = process.env.PORT || 5000;
 
